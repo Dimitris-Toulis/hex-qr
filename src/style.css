@@ -1,0 +1,107 @@
+.hexagon {
+  width: var(--w);
+  aspect-ratio: cos(30deg);
+  clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
+  background: #5f6c7a;
+}
+.rhombus-line{
+  display: flex;
+  gap: 4px;
+  transform: translate(
+    calc((var(--w)/2 + 2px) * var(--i)),
+    calc((var(--w) * cos(30deg) / -3 + 4px * cos(30deg)) * var(--i))
+  );
+}
+body{
+  margin: 0;
+  background-color: #122335;
+  flex-direction: column;
+  display: flex;
+  place-items: center;
+  --w: min(
+    calc((100dvw - 15 * 4px - 50px) / 16),
+    calc(((100dvh - 10 * 4px * cos(30deg) - 6rem - 50px) * 4/34) * cos(30deg))
+    );
+  justify-content: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#board {
+  margin: 25px;
+  height: calc((var(--w) / cos(30deg)) * 34/4 + 4px * cos(30deg) * 10);
+  width: calc(var(--w) * 16 + 15 * 6px);
+  overflow: hidden;
+}
+#close{
+  position: absolute;
+  right: 0;
+  top: -0.7rem;
+  background: none;
+  border: none;
+  color: red;
+  font-size: larger;
+  outline: none;
+}
+#modal{
+  position: absolute;
+  border: none;
+  background-color: #444d57;
+  color: white;
+  font-size: 32px;
+}
+#modal p {
+  margin: 1rem;
+  display: none;
+}
+#modal.p1 p {
+  color: #1e90ff;
+  display: inline;
+}
+#modal.p1 p::before {
+  content: "Player 1";
+}
+#modal.p2 p::before {
+  content: "Player 2";
+}
+#modal.p2 p {
+  color: #eb0000;
+  display: inline;
+}
+#modal.p1::backdrop {
+  background-image: linear-gradient(
+    45deg,
+    red,
+    dodgerblue,
+    red
+  );
+  opacity: 0.75;
+}
+#modal.p2::backdrop {
+  background-image: linear-gradient(
+    45deg,
+    dodgerblue,
+    red,
+    dodgerblue
+  );
+  opacity: 0.75;
+}
+button {
+  background-color: #0069cf;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+button:active{
+  background-color: #005cb6;
+}
+#controls {
+  margin-top: 1rem;
+  height: 5rem;
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  justify-items: center;
+}
