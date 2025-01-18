@@ -2,9 +2,14 @@
 
 Hex is a game where 2 players try to connect opposite sides of a rhombus-shaped board made of hexagons!
 
-I implemented the game but with a catch: All of the code fits inside a single QR code! Here try it: ![qr code](https://github.com/Dimitris-Toulis/hex-qr/blob/main/dist/qrcode.png?raw=true)
+I implemented the game but with a catch: All of the code fits inside a single QR code! Here try it:
 
-Video demo: https://github.com/Dimitris-Toulis/hex-qr/blob/main/demo/hex.mov
+![qr code](https://github.com/Dimitris-Toulis/hex-qr/blob/main/dist/qrcode.png?raw=true)
+
+Video demo: 
+
+https://github.com/user-attachments/assets/90ae60d4-787e-4c1c-82a7-f4e9dcfe0582
+
 
 Fun facts:
 - Draws are impossible in Hex
