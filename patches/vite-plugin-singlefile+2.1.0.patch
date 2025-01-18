@@ -1,0 +1,25 @@
+diff --git a/node_modules/vite-plugin-singlefile/dist/esm/index.js b/node_modules/vite-plugin-singlefile/dist/esm/index.js
+index fd6990b..34539ec 100644
+--- a/node_modules/vite-plugin-singlefile/dist/esm/index.js
++++ b/node_modules/vite-plugin-singlefile/dist/esm/index.js
+@@ -1,16 +1,16 @@
+ import micromatch from "micromatch";
+ const defaultConfig = { useRecommendedBuildConfig: true, removeViteModuleLoader: false, deleteInlinedFiles: true };
+ export function replaceScript(html, scriptFilename, scriptCode, removeViteModuleLoader = false) {
+-    const reScript = new RegExp(`<script([^>]*?) src="[./]*${scriptFilename}"([^>]*)></script>`);
++    const reScript = new RegExp(`<script([^>]*?) src=[./]*${scriptFilename}></script>`);
+     const preloadMarker = /"?__VITE_PRELOAD__"?/g;
+     const newCode = scriptCode.replace(preloadMarker, "void 0").replace(/<(\/script>|!--)/g, '\\x3C$1');
+-    const inlined = html.replace(reScript, (_, beforeSrc, afterSrc) => `<script${beforeSrc}${afterSrc}>${newCode.trim()}</script>`);
++    const inlined = html.replace(reScript, (_, beforeSrc) => `<script${beforeSrc}>${newCode.trim()}</script>`);
+     return removeViteModuleLoader ? _removeViteModuleLoader(inlined) : inlined;
+ }
+ export function replaceCss(html, scriptFilename, scriptCode) {
+-    const reStyle = new RegExp(`<link([^>]*?) href="[./]*${scriptFilename}"([^>]*?)>`);
++    const reStyle = new RegExp(`<link([^>]*?) href=[./]*${scriptFilename}>`);
+     const newCode = scriptCode.replace(`@charset "UTF-8";`, "");
+-    const inlined = html.replace(reStyle, (_, beforeSrc, afterSrc) => `<style${beforeSrc}${afterSrc}>${newCode.trim()}</style>`);
++    const inlined = html.replace(reStyle, (_, beforeSrc) => `<style${beforeSrc}>${newCode.trim()}</style>`);
+     return inlined;
+ }
+ const isJsFile = /\.[mc]?js$/;
