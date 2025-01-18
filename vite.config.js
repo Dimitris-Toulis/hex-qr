@@ -29,7 +29,7 @@ export default {
 				const datauri =
 					"data:text/html;charset=utf-8;base64," +
 					Buffer.from(bundle["index.html"].source, "utf-8").toString(
-						"base64url"
+						"base64"
 					);
 				await writeFile("./dist/datauri.txt", datauri);
 				await qrcode.toFile("./dist/qrcode.png", datauri, {
